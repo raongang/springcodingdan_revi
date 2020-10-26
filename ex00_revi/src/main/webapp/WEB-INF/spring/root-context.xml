@@ -20,5 +20,10 @@
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
 	</bean>
+	
+	<!-- myBatis HikcariCP 연결 -->
+	 <bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 	<property name="dataSource" ref="dataSource" />
+	 </bean>
 			
 </beans>

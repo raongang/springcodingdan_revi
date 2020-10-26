@@ -117,6 +117,13 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- AOP Transaction 처리 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>		
+		
 		<!-- Connection Pool HikariCP  -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
@@ -136,7 +143,7 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-			<version>3.4.1</version>
+			<version>3.4.6</version>
 		</dependency>
 		
 		<!-- myBatis와 spring을 연결하기 위함 -->
