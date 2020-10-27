@@ -27,6 +27,7 @@ public class MyBatisTest {
 	@Test
 	public void testConnection() {
 		try {
+			
 			SqlSession session = sqlSessionFactory.openSession();
 			Connection con = session.getConnection();
 			

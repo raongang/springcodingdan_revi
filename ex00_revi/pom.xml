@@ -102,8 +102,6 @@
 			<version>1.16</version>
 		</dependency>	
 		
-		
-		
 		<dependency>
 			<!-- lombock 사용하기 위해서 버전 버전 설정 -->
 			<groupId>log4j</groupId>
