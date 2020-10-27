@@ -22,7 +22,7 @@
 	
 		로깅레벨
 		ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF
-		WARN을 로그 레벨로 지정을 하게 되면 그 아래  WARN, ERROR, FATAL까지 로그가 찍히게 된다
+		WARN을 로그 레벨로 지정을 하게 되면 WARN, ERROR, FATAL까지 로그가 찍히게 된다
 	-->
 		
 	<!-- Application Loggers -->
