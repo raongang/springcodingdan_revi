@@ -1,0 +1,11 @@
+
+DB 
+ - Oracle11 
+ 
+유저생성
+ create user book_ex identified by book_ex default tablespace users temporary tablespace temp;
+ grant connect, dba to book_ex;
+ 
+포트변경
+ select dbms_xdb.gethttpport() from dual;
+'exec dbms_xdb.sethttpport(9000);
