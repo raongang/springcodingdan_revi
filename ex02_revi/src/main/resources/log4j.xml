@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- log4jdbc-log4j2 
+		
+		jdbc.sqlonly : SQL문만을 로그로 남기며, PreparedStatement일 경우 관련된  argument값으로 대체된 SQL문이 보여진다.
+		jdbc.sqltiming : SQL문과 해당 SQL을 실행시키는데 수행된 시간정보(millseconds)를 포함한다.
+		jdbc.audit : ResultSet을 제외한 모든 JDBC호출 정보를 로그를 남긴다. 많은 양의 로그가 생성되므로 특별히 jdbc문제를
+		추적해야 할 필요가 있는 경우를 제외하고는 사용을 권장하지 않는다.
+		jdbc.resultset : ResultSet을 포함한 JDBC호출정보를 로그를 남기므로 매우 방대한 양의 로그가 생성됨.
+		jdbc.resultsettable : SQL결과 조회된 데이터의 table을 로그로 남긴다.
+	
+	
+		로깅레벨
+		ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF
+		WARN을 로그 레벨로 지정을 하게 되면 WARN, ERROR, FATAL까지 로그가 찍히게 된다
+	-->
+		
+	<!-- Application Loggers -->
+	<logger name="com.zerock.controller">
+		<level value="info" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+	
+	<!-- 추가 -->
+	<logger name="jdbc.audit">
+		<level value="warn" />
+	</logger>
+	
+	<logger name="jdbc.resultset">
+		<level value="warn" />
+	</logger>
+	
+	<logger name="jdbc.connection">
+		<level value="warn" />
+	</logger>
+	
+	<logger name="jdbc.sqltiming">
+		<level value="info" />
+	</logger>
+	
+	<logger name="jdbc.sqlonly">
+		<level value="info" />
+	</logger>
+	
+	<logger name="jdbc.resultsettable">
+		<level value="info" />
+	</logger>	
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="info" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>

@@ -1,0 +1,31 @@
+
+● DB 
+ - Oracle11 
+ 
+유저생성
+ create user book_ex identified by book_ex default tablespace users temporary tablespace temp;
+ grant connect, dba to book_ex;
+ 
+포트변경
+ select dbms_xdb.gethttpport() from dual;
+'exec dbms_xdb.sethttpport(9000);
+
+● 테이블 생성
+
+create sequence seq_board;
+
+create table tbl_board(
+    bno number(10,0),
+    title varchar2(200) not null,
+    content varchar2(2000) not null,
+    writer varchar2(50) not null,
+    regdate date default sysdate,
+    updatedate date default sysdate
+);
+
+alter table tbl_board add constraint pk_board primary key(bno);
+
+● 더미 데이터 생성
+
+insert into tbl_board(bno,title,content,writer) values ( seq_board.nextval, '테스트제목','테스트내용','user00');
+commit;
