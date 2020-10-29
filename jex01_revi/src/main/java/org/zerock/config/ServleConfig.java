@@ -1,6 +1,11 @@
 package org.zerock.config;
 
+import java.io.IOException;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -13,7 +18,7 @@ import org.springframework.web.servlet.view.JstlView;
 */
 
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.zerock.controller" })
+@ComponentScan(basePackages = { "com.zerock.controller" , "com.zerock.exception" })
 public class ServleConfig implements WebMvcConfigurer {
 
 	@Override
@@ -31,4 +36,20 @@ public class ServleConfig implements WebMvcConfigurer {
 		registry.viewResolver(bean);
 	}
 
+	/*
+	 *   CommonsMultipartResolver - 클래스
+	 *   MultipartResolver - Interface 
+	 */
+	@Bean(name="multipartResolver")
+	public CommonsMultipartResolver getResolver() throws IOException {
+		
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setDefaultEncoding("UTF-8");
+		resolver.setMaxUploadSize(104857560);
+		resolver.setMaxUploadSizePerFile(2097152);
+		resolver.setUploadTempDir(new FileSystemResource("c:\\upload\\tmp"));
+		resolver.setMaxInMemorySize(10485756);
+		
+		return resolver;
+	}
 }

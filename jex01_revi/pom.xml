@@ -32,13 +32,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
-		<!-- AspectJ -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
-		</dependency>	
 		
 		<!-- Logging -->
 		<dependency>
@@ -57,11 +50,12 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
+			
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
+			<version>1.2.17</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.mail</groupId>
@@ -80,8 +74,17 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
+			<!-- Lombok @Log4j를 이용하기 위해 삭제
 			<scope>runtime</scope>
+			 -->
 		</dependency>
+		
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>			
 
 		<!-- @Inject -->
 		<dependency>
@@ -168,25 +171,40 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- json 선언 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.4</version>
+		</dependency>
+				
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
-		</dependency>		
+		</dependency>	
+				
+		<!-- file upload 처리 
+			servlet 3.0 이전에 많이 사용되는 파일 업로드
+		-->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.3</version>
+		</dependency>
+		
+		
 	</dependencies>
-	
     <build>
         <plugins>
-        
         	<!-- java config 이용 설정
         		web.xml을 사용하는 것을 기본설정으로 되어 있었기 때문에, 이를 해결하기 위해 아래 플러그인을 추가 
         	  -->
-        	  
         	 <plugin>
         	 	<groupId>org.apache.maven.plugins</groupId>
         	 	<artifactId>maven-war-plugin</artifactId>
         	 	<version>3.2.0</version>
-        	 	
         	 	<configuration>
         	 		<failOnMissingWebXml>false</failOnMissingWebXml>
         	 	</configuration>

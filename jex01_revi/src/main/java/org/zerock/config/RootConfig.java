@@ -19,8 +19,8 @@ public class RootConfig {
 	//XML의 <bean> 이랑 같음.
 	@Bean
 	public DataSource dataSource() {
-		HikariConfig hikariConfig = new HikariConfig();
 		
+		HikariConfig hikariConfig = new HikariConfig();
 		/* 일반 설정
 		hikariConfig.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:orcl");
