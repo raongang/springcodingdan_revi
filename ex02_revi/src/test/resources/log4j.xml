@@ -70,6 +70,9 @@
 	
 	<logger name="jdbc.resultsettable">
 		<level value="info" />
+		<!-- 이거 적으면 console에 로그가 2번나온다.
+		<appender-ref ref="console" />
+		 -->
 	</logger>	
 
 	<!-- Root Logger -->

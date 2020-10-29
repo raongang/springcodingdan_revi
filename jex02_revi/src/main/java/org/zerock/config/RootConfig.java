@@ -26,6 +26,7 @@ public class RootConfig {
 		hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:orcl");
 		*/
 		
+		//log4jdbc.log4j2 를 이용한 방법
 		hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
 		hikariConfig.setJdbcUrl("jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl");
 		hikariConfig.setUsername("book_ex");
