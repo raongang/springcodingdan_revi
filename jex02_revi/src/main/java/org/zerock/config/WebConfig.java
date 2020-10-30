@@ -48,9 +48,4 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	}
 	
 	
-	
-	
-	
-	
-	
 }

@@ -13,7 +13,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@ComponentScan(basePackages = { "org.zerock.diSample" } )
+@MapperScan(basePackages = { "org.zerock.mapper" })
 public class RootConfig {
 
 	//XML의 <bean> 이랑 같음.

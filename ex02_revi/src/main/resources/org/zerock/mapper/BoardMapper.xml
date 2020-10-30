@@ -6,8 +6,10 @@
   <mapper namespace="org.zerock.mapper.BoardMapper">
   
   	<!-- id와 return type 맞춰야 한다. -->
-  	<select id="getListXML" resultType="org.zerock.domain.BoardVO">
+  	<select id="getList" resultType="org.zerock.domain.BoardVO">
+  		<![CDATA[
   		select * from tbl_board where bno >0
+  		]]>
   	</select>
  
   </mapper>

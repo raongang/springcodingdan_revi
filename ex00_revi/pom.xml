@@ -100,7 +100,7 @@
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>
 			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 			<version>1.16</version>
-		</dependency>	
+		</dependency>
 		
 		<dependency>
 			<!-- lombock 사용하기 위해서 버전 버전 설정 -->

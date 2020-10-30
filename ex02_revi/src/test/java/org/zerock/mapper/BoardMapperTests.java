@@ -17,17 +17,20 @@ public class BoardMapperTests {
 	@Setter(onMethod_ = {@Autowired})
 	private BoardMapper boardMapper;
 	
-	
 	@Test
 	public void testGetList() {
 		log.info(boardMapper.getClass().getName());
-		log.info(boardMapper.getList());
+		//log.info(boardMapper.getList());
+		boardMapper.getList().forEach(board->log.info(board));
 	}
 	
+	/*
 	@Test
 	public void testGetListXML() {
 		log.info("===============================");
 		log.info("boardMapper getListXML");
 		log.info(boardMapper.getListXML());
-	}
+	}*/
+	
+ 
 }
