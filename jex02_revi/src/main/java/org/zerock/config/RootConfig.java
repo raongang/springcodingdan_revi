@@ -14,6 +14,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @MapperScan(basePackages = { "org.zerock.mapper" })
+@ComponentScan(basePackages = {"org.zerock.service"})
 public class RootConfig {
 
 	//XML의 <bean> 이랑 같음.

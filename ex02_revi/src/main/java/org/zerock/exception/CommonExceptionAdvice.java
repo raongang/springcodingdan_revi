@@ -10,17 +10,15 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import lombok.extern.log4j.Log4j;
 
 /**
- * 
- * @author raongang
+ *
+ *  @author raongang
  *   예외처리
  *    - @ExceptionHandler 와 @ControllerAdvice를 이용한 처리
  *    - @ResponseEntity를 이용하는 예외 메시지 구성
  *    
- *    
  *    @ExceptionHandler (지역)
  *       - Controller, RestController에만 적용가능하다. (@Service같은 빈에서는 안됨.)
-
-  
+ *  
  *    @ControllerAdvice
  *       - 모든 @Controller에 적용(전역) 
  *       - 해당 객체가 스프링의 컨트롤러에서 발생하는 예외를 처리하는 존재임을 명시하는 용도
@@ -31,7 +29,6 @@ import lombok.extern.log4j.Log4j;
 //@RestControllerAdvice
 @Log4j
 public class CommonExceptionAdvice {
-	
 	
 	//일반적인 예외처리
 	@ExceptionHandler(Exception.class)
@@ -44,7 +41,6 @@ public class CommonExceptionAdvice {
 	
 	// 404 Error 예외처리 - web.xml에도 DispatcherServlet 에 param설정을 해야한다.
 	// 모든 request이 DispatcherServlet를 통해서 처리되기 때문에..   
-	
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String handler404(NoHandlerFoundException e) {

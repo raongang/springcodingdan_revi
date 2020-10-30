@@ -12,6 +12,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:component-scan base-package="org.zerock.controller"></context:component-scan>
+	<context:component-scan base-package="org.zerock.service"></context:component-scan>
 
 	<!-- Connection Pool - HikariCP 설정 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -40,8 +41,9 @@
 	 
 	 <!-- XML mapper가 아닌 mapper interface를 사용. 
 	      myBatis Annotation을 찾아서 처리.
-	 -->
+	-->
 	 <mybatis-spring:scan base-package="org.zerock.mapper"/>
+	  
 	 
 	 
 	 <!-- MVC구조처럼 DAO에서 mapper xml을 이용할려면 sqlSession을 이용해야 한다. 
