@@ -13,7 +13,6 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-
 //필드값은 포함한 모든 생성자를 자동으로 생성해준다. - lombok
 @AllArgsConstructor 
 public class BoardServiceImpl implements BoardService{
@@ -62,7 +61,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardVO> getList() {
 		// TODO Auto-generated method stub
-		log.info("getList....");
+		System.out.println("getList 서비스 실행");
 		return mapper.getList();
 	}
 }

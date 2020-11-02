@@ -3,6 +3,8 @@ package org.zerock.controller;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,17 +38,20 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class BoardControllerTests {
 
+	@Autowired
+	BoardController boardController;
+	
+	
 	@Setter(onMethod_ = { @Autowired })
 	private WebApplicationContext ctx;
 	private MockMvc mockMvc;
 	
 	@Before
 	public void setUp() {
-        //this.mockMvc = MockMvcBuilders.standaloneSetup(testController).build();     // test를 위한 MockMvc 객체 생성. testController 1개만 주입.
-      this.mockMvc = MockMvcBuilders.webAppContextSetup(this.ctx).build();  // test를 위한 MockMvc 객체 생성. 스프링이 로드한 WebApplicationContext의 인스턴스로 작동
+       this.mockMvc = MockMvcBuilders.standaloneSetup(boardController).build();     // test를 위한 MockMvc 객체 생성. boardController 1개만 주입.
+      //this.mockMvc = MockMvcBuilders.webAppContextSetup(this.ctx).build();  // test를 위한 MockMvc 객체 생성. 스프링이 로드한 WebApplicationContext의 인스턴스로 작동
       
 	}
-	
 	
 	@Test
 	public void testList() throws Exception{
@@ -66,5 +71,48 @@ public class BoardControllerTests {
                 .andExpect(status().isOk());           // 호출 결과값이 OK가 나오면 정상처리
     }
     
+    @Test
+    public void testRegister() throws Exception{
+    	
+    	String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
+    			.param("title", "테스트 새글 제목")
+    			.param("content", "테스트 새글 내용")
+    			.param("writer", "user00")
+    			).andReturn().getModelAndView().getViewName();
+    			
+    	log.info("resultPage : " + resultPage);
+    }
+    
+    @Test
+    public void testGet() throws Exception{
+    	log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/get")
+    			.param("bno", "2"))
+    			.andReturn()
+    			.getModelAndView()
+    			.getModelMap()
+    			);
+    }
+    
+    @Test
+    public void testModify() throws Exception{
+    	
+    	Object resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
+    			.param("bno", "2")
+    			.param("title", "테스트 수정 제목")
+    			.param("content", "테스트 수정 내용")
+    			.param("writer", "user11")
+    			).andReturn().getFlashMap().get("result");
+    			
+    	log.info("Flash Attribute(result) Value  : " + resultPage);
+    }
+    
+    @Test
+    public void testRemove() throws Exception{
+    	
+    	//삭제된 DB에서 게시글 번호 확인 필요.
+    	
+    	String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove").param("bno", "2")).andReturn().getModelAndView().getViewName();
+    	log.info("testRemove result Page : " + resultPage);
+    }
 	
 }
