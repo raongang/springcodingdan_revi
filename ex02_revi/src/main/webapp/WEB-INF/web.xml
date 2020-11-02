@@ -52,7 +52,9 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- Filter 설정 -->
+	<!-- Filter 설정 
+	     - 이 부분이 빠지면, jsp에서 controller로 request data를 보낼때 한글 깨짐 현상이 발생한다.
+	-->
 	<filter>
 		<filter-name>encoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -61,5 +63,14 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>	
+	
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<!-- 
+		<url-pattern>/*</url-pattern>
+		 -->
+		 <servlet-name>appServlet</servlet-name>
+		
+	</filter-mapping>
 
 </web-app>

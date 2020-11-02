@@ -4,9 +4,42 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@include file="../includes/header.jsp"%>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var result = "${result}";
+		console.log("result : " + result);
+		
+		checkModal(result);
+
+		
+		//modal checking
+		function checkModal(result) {
+			if (result === '') {
+				return;
+			}
+			if (parseInt(result) > 0) {
+				$(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+			}
+			$("#myModal").modal("show");
+		}
+		
+		//register button event
+		$("#regBtn").on("click", function(){
+			window.location.href = "/board/register";
+		});
+		
+		
+		
+	});
+</script>
+ 
+
+
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Tables</h1>
+		<h1 class="page-header">Board Tables</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -14,7 +47,9 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">BoardList Page</div>
+			<div class="panel-heading">BoardList Page
+				<button id="regBtn" type="button" class="btn btn-xs pull-right">Register New Board</button>
+			</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<table width="100%"
@@ -41,7 +76,32 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<!-- end panel-body -->
+				
+				<!-- modal add -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+							</div>
+							<div class="modal-body">처리가 완료되었습니다.</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save
+									changes</button>
+							</div>
+						<!-- /.modal-content -->							
+						</div>
+					<!-- /.modal-dialog -->	
+					</div>
+				<!-- /.modal -->	
+				</div>
+				
+			<!-- end panel-body -->
 			</div>
 			<!-- end panel -->
 		</div>
@@ -49,6 +109,7 @@
 	</div>
 	<!-- end row -->
 </div>
+
 
 <%@include file="../includes/footer.jsp"%>
 

@@ -24,11 +24,24 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(Model model) {
+		
+		// flashAttribute 값 확인 테스트를 위해 추가.
+		if(model.asMap().get("result")!=null) {
+			log.info("model result value : " + model.asMap().get("result"));
+		}
+		
 		log.info("list...");
 		model.addAttribute("list", service.getList());
 	}
 	
-	//등록
+	
+	//등록 FORM
+	@GetMapping("/register")
+	public void register() {
+		log.info("register get");
+	}
+	
+	//등록 POST 
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		log.info("register board : " + board);
@@ -74,6 +87,5 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
-	
-	
+
 }
