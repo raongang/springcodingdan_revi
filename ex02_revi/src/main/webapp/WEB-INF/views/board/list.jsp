@@ -1,5 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
@@ -12,7 +11,6 @@
 		console.log("result : " + result);
 		
 		checkModal(result);
-
 		
 		//modal checking
 		function checkModal(result) {
@@ -30,12 +28,8 @@
 			window.location.href = "/board/register";
 		});
 		
-		
-		
 	});
 </script>
- 
-
 
 <div class="row">
 	<div class="col-lg-12">
@@ -43,6 +37,7 @@
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
+
 <!-- /.row -->
 <div class="row">
 	<div class="col-lg-12">
@@ -68,7 +63,11 @@
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td>${board.bno}</td>
-							<td>${board.title}</td>
+							<!-- 여기서 <c:out을 쓴 이유는 HTML에서는 ' 도 "로 인식을 하다보니 a href의 '와 bno데이터를 뽑는 부분에서의 "가 매칭이 되지 않았다.
+								그리고, 작업을 진행하다가 알았는데 그냥 EL표현식보다 c:out을 쓰는게 더 좋은거 같음... 
+								확실한 이유는 잘 모르겠음.
+							 -->
+							<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'>${board.title }</a>
 							<td>${board.writer}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }" /></td>
@@ -89,8 +88,7 @@
 							</div>
 							<div class="modal-body">처리가 완료되었습니다.</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								<button type="button" class="btn btn-primary">Save
 									changes</button>
 							</div>
@@ -109,7 +107,6 @@
 	</div>
 	<!-- end row -->
 </div>
-
 
 <%@include file="../includes/footer.jsp"%>
 

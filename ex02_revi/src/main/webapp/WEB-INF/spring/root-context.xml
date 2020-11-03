@@ -24,7 +24,7 @@
 		
 		<!-- log4jdbc.log4j2 를 이용한 방법 -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl" />		
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@192.168.12.184:1521:orcl" />		
 		<property name="username" value="book_ex" />
 		<property name="password" value="book_ex" />
 	</bean>	
@@ -44,8 +44,6 @@
 	-->
 	 <mybatis-spring:scan base-package="org.zerock.mapper"/>
 	  
-	 
-	 
 	 <!-- MVC구조처럼 DAO에서 mapper xml을 이용할려면 sqlSession을 이용해야 한다. 
 	 	  myBatis-spring jar에서 제공하는 SqlSessionTemplate는 MyBatis의 SqlSession인터페이스를 구현한 클래스로 기본적인 트랜잭션의 관리나 쓰레드 처리의 안정성 등을 보장해 주고, 
 	 	  데이터베이스의 연결과 종료를 책임진다.
@@ -54,5 +52,5 @@
 	 	<constructor-arg name="sqlSessionFactory" ref="SqlSessionFactory" />
 	 </bean>
 	  -->
-			
+					
 </beans>
