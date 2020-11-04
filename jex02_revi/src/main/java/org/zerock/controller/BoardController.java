@@ -24,11 +24,25 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(Model model) {
+		
+		// flashAttribute 값 확인 테스트를 위해 추가.
+		if(model.asMap().get("result")!=null) {
+			log.info("model result value : " + model.asMap().get("result"));
+		}else {
+			log.info("model.asMap().get('result') is null");
+		}
+		
 		log.info("list...");
 		model.addAttribute("list", service.getList());
 	}
 	
-	//등록
+	//등록 FORM
+	@GetMapping("/register")
+	public void register() {
+		log.info("register get");
+	}
+	
+	//등록 POST 
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		log.info("register board : " + board);
@@ -45,10 +59,12 @@ public class BoardController {
 		return "redirect:/board/list";		
 	}
 	
-	// 조회처리 ( 리턴값이 void이므로 호출하는 url과 동일한 jsp 호출 ) 
-	@GetMapping("/get")
+	// 게시물 하나 상세 조회 ( 리턴값이 void이므로 호출하는 url과 동일한 jsp 호출 )
+
+	@GetMapping( {"/get","/modify"} )
 	public void get(@RequestParam("bno") Long bno, Model model) {
-		log.info("/get...");
+		
+		log.info("/get or /modify...");
 		
 		model.addAttribute("board", service.get(bno));
 	}
@@ -64,7 +80,9 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	//삭제
+	/* 삭제 
+	 *    form 으로 해서 데이터가 다 넘어오지만 Vo가 아닌 RequestParam으로 특정 값만 받을수도 있음.
+	 * */
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
 		log.info("remove bno : " + bno);
@@ -74,6 +92,5 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
-	
-	
+
 }

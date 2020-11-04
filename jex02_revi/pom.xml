@@ -184,6 +184,13 @@
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>	
+		
+		<!-- json 선언 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.4</version>
+		</dependency>		
 				
 		<!-- file upload 처리 
 			servlet 3.0 이전에 많이 사용되는 파일 업로드
