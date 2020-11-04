@@ -4,17 +4,23 @@
 
 <%@include file="../includes/header.jsp"%>
 
-
 <script type="text/javascript">
+	
 	$(document).ready(function() {
-		var result = "${result}";
+	
+		var result = '<c:out value="${result}"/>';
 		console.log("result : " + result);
 		
 		checkModal(result);
 		
+		//현재 창의 열람이력을 수정한다.
+		history.replaceState({}, null, null);
+		console.log("history.state : " + history.state);
+		
 		//modal checking
 		function checkModal(result) {
-			if (result === '') {
+			if (result === '' || history.state) {
+				console.log("check Point");
 				return;
 			}
 			if (parseInt(result) > 0) {
@@ -26,6 +32,7 @@
 		//register button event
 		$("#regBtn").on("click", function(){
 			window.location.href = "/board/register";
+			//self.location="/board/register";
 		});
 		
 	});
@@ -63,10 +70,7 @@
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td>${board.bno}</td>
-							<!-- 여기서 <c:out을 쓴 이유는 HTML에서는 ' 도 "로 인식을 하다보니 a href의 '와 bno데이터를 뽑는 부분에서의 "가 매칭이 되지 않았다.
-								그리고, 작업을 진행하다가 알았는데 그냥 EL표현식보다 c:out을 쓰는게 더 좋은거 같음... 
-								확실한 이유는 잘 모르겠음.
-							 -->
+							<!-- 새창은 target=_blank옵션으로 줄수 있다. -->
 							<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'>${board.title }</a>
 							<td>${board.writer}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }" /></td>

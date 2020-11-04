@@ -1,8 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <%@include file="../includes/header.jsp"%>
+
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		
+		var operForm = $("#operForm");
+		
+		$("button[data-oper='modify']").on("click",function(e){
+			operForm.attr("action","/board/modify").submit();
+		});
+		
+		$("button[data-oper='list']").on("click",function(e){
+			operForm.find("#bno").remove(); //필요없는 항목 삭제
+			operForm.attr("action","/board/list").submit();
+		});
+	});
+</script>
 
 <div class="row">
 	<div class="col-lg-12">
@@ -29,9 +46,7 @@
 					
 					<div class="form-group">
 						<label>Content</label><textarea class="form-control" rows="3" name="content" readonly="readonly">${board.content}</textarea>
-	
 					</div>					
-
 
 					<div class="form-group">
 						<label>Writer</label> <input class="form-control" name="writer" value="${board.writer}" readonly="readonly" />
@@ -40,8 +55,13 @@
 					<!-- HTML5 기능
 						data-*   : HTML ELEMENT에 데이터를 저장하는 용도.
 					 -->
-					<button data-oper="modify" class="btn btn-default" onclick="location.href='/board/modify?bno=${board.bno}'">Modify</button>
-					<button data-oper="list" class="btn btn-info" onclick="location.href='/board/list'">List</button>
+					 
+					<button data-oper="modify" class="btn btn-default">Modify</button>
+					<button data-oper="list" class="btn btn-info">List</button>
+					
+					<form id="operForm" action="/board/modify" method="get">
+						<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
+					</form>
 					
 			</div>
 			<!-- end panel-body -->
