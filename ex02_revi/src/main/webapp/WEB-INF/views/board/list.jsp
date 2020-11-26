@@ -54,9 +54,7 @@
 			</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
-				<table width="100%"
-					class="table table-striped table-bordered table-hover"
-					id="dataTables-example">
+				<table width="100%" class="table table-striped table-bordered table-hover" <%--id="dataTables-example" --%>>
 					<thead>
 						<tr>
 							<th>#번호</th>
@@ -80,7 +78,7 @@
 					</c:forEach>
 				</table>
 				
-				<!-- 페이지 처리 구문  -->
+				<!-- paging handler  -->
 				<div class='pull-right'>
 					<ul class="pagination">
 					
@@ -97,9 +95,9 @@
 						<c:if test="${pageMaker.next}">
 							<li class="paginate_button next"><a href="${pageMaker.endPage+1 } }">Next</a></li>
 						</c:if>
+						
 					</ul>
 				</div>
-				
 				
 				<!-- modal add -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -123,7 +121,6 @@
 					</div>
 				<!-- /.modal -->	
 				</div>
-				
 			<!-- end panel-body -->
 			</div>
 			<!-- end panel -->

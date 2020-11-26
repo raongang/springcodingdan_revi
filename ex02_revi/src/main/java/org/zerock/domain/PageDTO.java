@@ -7,7 +7,6 @@ import lombok.ToString;
 @ToString
 public class PageDTO {
 
-
 	private int startPage;
 	private int endPage;
 	private boolean prev, next;
