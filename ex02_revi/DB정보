@@ -29,3 +29,21 @@ alter table tbl_board add constraint pk_board primary key(bno);
 
 insert into tbl_board(bno,title,content,writer) values ( seq_board.nextval, '테스트제목','테스트내용','user00');
 commit;
+
+
+● Oracle Hint
+
+-- PK를 만들면 INDEX도 같이 생성되는데 INDEX 자체가 정렬상태이기 때문에, 힌트를 이용하여 정렬할수 있다.
+-- ORDER BY 는 데이터가 많을수록 시간이 오래 걸린다. 따라서, INDEX를 이용한 정렬을 하게 되는데 이 경우에도 데이터가 너무 많으면 시간이 많이 걸릴
+-- 수 있기 때문에, 정렬을 사용하지 않는 방법인 Oracle Hint를 이용한다.
+
+SELECT /*+INDEX_DESC ( TBL_BOARD PK_BOARD ) */ * FROM TBL_BOARD;
+SELECT /*+INDEX_ASC(TBL_BOARD PK_BOARD) */ * FROM TBL_BOARD WHERE BNO > 0;
+
+
+ -- FULL로 스캔하므로 시간이 오래 걸린다.
+SELECT /*+FULL(TBL_BOARD) */ * FROM TBL_BOARD ORDER BY BNO DESC;
+
+● Oracle RowNum
+ - RowNum : SQL이 실행된 결과에 넘버링을 해준다는 개념
+  

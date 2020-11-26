@@ -80,6 +80,27 @@
 					</c:forEach>
 				</table>
 				
+				<!-- 페이지 처리 구문  -->
+				<div class='pull-right'>
+					<ul class="pagination">
+					
+						<c:if test="${pageMaker.prev }">
+							<li class="paginate_button previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
+						</c:if>
+						
+						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+							<li class="paginate_button ${pageMaker.cri.pageNum == num ? 'active' : ''}">
+								<a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+						
+						<c:if test="${pageMaker.next}">
+							<li class="paginate_button next"><a href="${pageMaker.endPage+1 } }">Next</a></li>
+						</c:if>
+					</ul>
+				</div>
+				
+				
 				<!-- modal add -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">

@@ -2,18 +2,16 @@ package org.zerock.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-
 //필드값은 포함한 모든 생성자를 자동으로 생성해준다. - lombok
 @AllArgsConstructor 
 public class BoardServiceImpl implements BoardService{
@@ -60,9 +58,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria cri) {
 		// TODO Auto-generated method stub
-		log.info("getList....");
-		return mapper.getList();
+		log.info("getList with criteria : " + cri);
+		//return mapper.getList();
+		return mapper.getListWithPaging(cri);
 	}
+
+
+	
 }

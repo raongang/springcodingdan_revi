@@ -107,6 +107,7 @@ public class SampleController {
 		return "/sample/ex04";
 	}*/
 	
+	
 	/**
 	 *   - 메소드의 파라미터를 Model 타입으로 선언하면 스프링 MVC에서 자동으로 Model 타입의 객체를 생성해준다.
 	 *   - @ModelAttribute로 파라미터를 선언시 타입에 상관없이 Model에 자동추가된다.
@@ -117,13 +118,7 @@ public class SampleController {
 	public String ex04(SampleDTO dto, @ModelAttribute("page") int page) {
 		logger.info("dto : " + dto);
 		logger.info("page : " + page);
-		
 		return "/sample/ex04";
 	}
-	
-
-	
-	
-
 	
 }

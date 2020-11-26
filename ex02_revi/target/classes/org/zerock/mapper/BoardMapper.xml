@@ -3,9 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  
   <mapper namespace="org.zerock.mapper.BoardMapper">
-   
   
   	<!-- id와 return type 맞춰야 한다. -->
   	<select id="getList" resultType="org.zerock.domain.BoardVO">
@@ -18,7 +16,7 @@
   		insert into tbl_board (bno, title, content, writer) values (seq_board.nextval, #{title}, #{content}, #{writer})
   	</select>
   	
-  	<!--   -->
+  	<!---->
   	<insert id="insertSelectKey">
   		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
   			select seq_board.nextval from dual
@@ -38,9 +36,22 @@
   	
   	<update id="update">
   		update tbl_board set title=#{title}, content = #{content}, writer = #{writer}, updateDate = sysdate where bno = #{bno}
-
   	</update>
 
+ 
+ 	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+ 		<![CDATA[
+ 			select bno, title, content, writer, regdate, updateDate
+ 			from	
+ 				(select /*+INDEX_DESC(tbl_board pk_board)*/ rownum rn, bno, title, content, writer, regdate, updateDate	
+ 				from	tbl_board
+ 				where rownum <= #{pageNum} * #{amount}
+ 				)
+ 			where rn > (#{pageNum} -1 ) * #{amount}
+ 			
+ 		]]>
+ 	</select>
+ 
  
   </mapper>
   

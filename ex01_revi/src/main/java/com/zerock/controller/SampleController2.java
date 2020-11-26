@@ -73,8 +73,6 @@ public class SampleController2 {
 			logger.info("name : " + files.get(i).getOriginalFilename());
 			logger.info("size : " +files.get(i).getSize());
 		}
-		
 	}
-	
 	
 }

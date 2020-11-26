@@ -69,8 +69,8 @@
 		<!-- 
 		<url-pattern>/*</url-pattern>
 		 -->
-		 <servlet-name>appServlet</servlet-name>
-		
+		 <servlet-name>appServlet</servlet-name>	
 	</filter-mapping>
+	
 
 </web-app>

@@ -2,8 +2,8 @@ package org.zerock.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 /* 	
  	SqlSession을 사용하여 XML을 이용하는 mapper 대신, mapper interface 사용.
@@ -26,6 +26,8 @@ public interface BoardMapper {
 	
 	public List<BoardVO> getList();
 	
+	public List<BoardVO> getListWithPaging(Criteria cri);
+	
 	public void insert(BoardVO board);
 	
 	public void insertSelectKey(BoardVO board);
@@ -37,6 +39,7 @@ public interface BoardMapper {
 	public int update(BoardVO board);
 	
 	
+
 	//@Select("select * from tbl_board where bno >0")
 	//public List<BoardVO> getListXML();
 	

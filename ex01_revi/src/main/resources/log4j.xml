@@ -19,7 +19,6 @@
 		jdbc.resultset : ResultSet을 포함한 JDBC호출정보를 로그를 남기므로 매우 방대한 양의 로그가 생성됨.
 		jdbc.resultsettable : SQL결과 조회된 데이터의 table을 로그로 남긴다.
 	
-	
 		로깅레벨
 		ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF
 		WARN을 로그 레벨로 지정을 하게 되면 WARN, ERROR, FATAL까지 로그가 찍히게 된다

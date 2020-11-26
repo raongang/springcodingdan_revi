@@ -59,9 +59,7 @@ public class BoardServiceTests {
 	public void testUpdate() {
 		
 		BoardVO board = service.get(66L);
-		
 		if(board==null) return;
-		
 		board.setTitle("제목을 수정합니다.");
 		log.info("MODIFY RESULT : " +  service.modify(board));
 		

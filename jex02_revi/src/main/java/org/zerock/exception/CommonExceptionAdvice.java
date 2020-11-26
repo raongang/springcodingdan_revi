@@ -19,7 +19,6 @@ import lombok.extern.log4j.Log4j;
  *    
  *    @ExceptionHandler (지역)
  *       - Controller, RestController에만 적용가능하다. (@Service같은 빈에서는 안됨.)
-
   
  *    @ControllerAdvice
  *       - 모든 @Controller에 적용(전역) 

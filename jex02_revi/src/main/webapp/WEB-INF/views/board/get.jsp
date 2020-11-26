@@ -15,7 +15,7 @@
 		});
 		
 		$("button[data-oper='list']").on("click",function(e){
-			operForm.find("#bno").remove(); //필요없는 항목 삭제
+			operForm.find("#bno").remove();
 			operForm.attr("action","/board/list").submit();
 		});
 	});
@@ -60,7 +60,7 @@
 					<button data-oper="list" class="btn btn-info">List</button>
 					
 					<form id="operForm" action="/board/modify" method="get">
-						<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
+						<input type="text" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
 					</form>
 					
 			</div>

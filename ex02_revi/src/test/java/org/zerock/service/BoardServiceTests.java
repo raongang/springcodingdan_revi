@@ -2,12 +2,15 @@ package org.zerock.service;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -19,6 +22,30 @@ public class BoardServiceTests {
 
 	@Setter(onMethod_ = {@Autowired})
 	private BoardService service;
+	
+	//Paging Calculation Math.ceil 은 소수점 이하 올림처리함.
+	@Test
+	public void show() {
+		int endPage = (int)Math.ceil(2/10.0)*10;
+		int startPage = endPage - 9;
+		
+		System.out.println("startPage >> " + startPage);
+		System.out.println("endPage >> " + endPage);
+	}
+	
+	@Test
+	public void testGetList() {
+		
+		//list forEach문
+		List<BoardVO> list = service.getList(new Criteria(2,10));
+		for(BoardVO board :list) {
+			System.out.println(board);
+		}
+		
+		/*   lamda를 사용한 list foreach문 
+		 *   service.getList(new Criteria(2,10)).forEach(board->log.info(board));
+		 */
+	}
 	
 	@Test
 	public void testExist() {
@@ -40,12 +67,12 @@ public class BoardServiceTests {
 		log.info("생성된 게시물의 번호 : " + board.getBno());
 		
 	}
-	
+	/*
 	@Test
 	public void testGetList() {
 		service.getList().forEach(board->log.info(board));
-	}
-	
+	}*/
+
 	@Test
 	public void testGet() {
 		log.info(service.get(2L));
@@ -60,14 +87,12 @@ public class BoardServiceTests {
 	
 	@Test
 	public void testUpdate() {
-		
 		BoardVO board = service.get(2L);
 		
 		if(board==null) return;
 		
 		board.setTitle("제목을 수정합니다.");
 		log.info("MODIFY RESULT : " +  service.modify(board));
-		
 	}
 	
 }

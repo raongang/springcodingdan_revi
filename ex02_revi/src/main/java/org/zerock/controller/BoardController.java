@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageDTO;
 import org.zerock.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +24,7 @@ public class BoardController {
 	// spring 4.3 이상에서 자동 처리 - 단일 파라미터를 받는 생성자의 경우에는 필요한 파라미터를 자동으로 주입 가능.
 	private BoardService service;
 	
+	/*
 	@GetMapping("/list")
 	public void list(Model model) {
 		
@@ -34,6 +37,14 @@ public class BoardController {
 		
 		log.info("list...");
 		model.addAttribute("list", service.getList());
+	}*/
+	
+	@GetMapping("/list")
+	public void list(Criteria cri, Model model) {
+		log.info("list : " + cri);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri,2752512));
+		model.addAttribute("list", service.getList(cri));
 	}
 	
 	//등록 FORM
@@ -82,15 +93,16 @@ public class BoardController {
 	
 	/* 삭제 
 	 *    form 으로 해서 데이터가 다 넘어오지만 Vo가 아닌 RequestParam으로 특정 값만 받을수도 있음.
-	 * */
+	 */
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
-		log.info("remove bno : " + bno);
 		
+		log.info("remove bno : " + bno);
 		if(service.remove(bno)) {
 			rttr.addFlashAttribute("result","success");
 		}
 		return "redirect:/board/list";
 	}
-
+	
+	
 }

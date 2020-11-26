@@ -42,13 +42,15 @@ public class CommonExceptionAdvice {
 		return "error_page";
 	}
 	
+	
 	// 404 Error 예외처리 - web.xml에도 DispatcherServlet 에 param설정을 해야한다.
 	// 모든 request이 DispatcherServlet를 통해서 처리되기 때문에..   
-	
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String handler404(NoHandlerFoundException e) {
 		return "custom404";
 	}
+
+	
 	
 }

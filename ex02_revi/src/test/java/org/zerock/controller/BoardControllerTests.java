@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockRequestDispatcher;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -20,9 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
-
 /**
 	 @WebAppConfiguration
 	   - 웹 컨텍스트 테스트 활성화
@@ -50,7 +49,18 @@ public class BoardControllerTests {
 	public void setUp() {
        this.mockMvc = MockMvcBuilders.standaloneSetup(boardController).build();     // test를 위한 MockMvc 객체 생성. boardController 1개만 주입.
       //this.mockMvc = MockMvcBuilders.webAppContextSetup(this.ctx).build();  // test를 위한 MockMvc 객체 생성. 스프링이 로드한 WebApplicationContext의 인스턴스로 작동
-      
+	}
+	
+	@Test
+	public void testListPage() throws Exception{
+		log.info(
+				mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+						.param("pageNum", "2")
+						.param("amount", "50"))
+				.andReturn()
+				.getModelAndView()
+				.getModelMap()
+				);
 	}
 	
 	@Test
