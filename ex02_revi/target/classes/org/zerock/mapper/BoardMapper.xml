@@ -37,7 +37,6 @@
   	<update id="update">
   		update tbl_board set title=#{title}, content = #{content}, writer = #{writer}, updateDate = sysdate where bno = #{bno}
   	</update>
-
  
  	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
  		<![CDATA[
@@ -48,7 +47,6 @@
  				where rownum <= #{pageNum} * #{amount}
  				)
  			where rn > (#{pageNum} -1 ) * #{amount}
- 			
  		]]>
  	</select>
  

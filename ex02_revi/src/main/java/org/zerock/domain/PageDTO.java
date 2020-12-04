@@ -21,6 +21,7 @@ public class PageDTO {
 		this.cri = cri;
 		
 		// * 10을 한 이후에는 페이지를 10개씩 보여준다고 가정한다.
+		// 세일을 하게 되면 반올림함.
 		this.endPage = (int)(Math.ceil(cri.getPageNum()/10.0)) * 10;
 		
 		this.startPage = endPage - 9;

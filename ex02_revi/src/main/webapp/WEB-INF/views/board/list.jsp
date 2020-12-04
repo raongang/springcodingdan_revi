@@ -35,6 +35,23 @@
 			//self.location="/board/register";
 		});
 		
+		//페이징처리
+		var actionForm = $("#actionForm");
+		$(".paginate_button a").on("click", function(e){
+			e.preventDefault();
+			console.log("page click");
+			
+			//페이지 번호를 클릭하면 클릭한 페이지번호의 값을 넣어준다.
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+			
+		});
+		
+		//게시물 상세보기 이후 list로 갈때 처리. 해당 처리가 없으면 페이지가 현재 봤던 페이지가 아닌 고정페이지로 계속 나온다.
+		$(".move").on("click",function(e){
+						
+		});
+		
 	});
 </script>
 
@@ -68,8 +85,10 @@
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td>${board.bno}</td>
-							<!-- 새창은 target=_blank옵션으로 줄수 있다. -->
-							<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'>${board.title }</a>
+							<!-- 새창은 target=_blank옵션으로 줄수 있다. 
+							<td><a class='move' href='/board/get?bno=<c:out value="${board.bno}"/>'>${board.title }</a>
+							-->
+							<td><a class='move' href='<c:out value="${board.bno}"/>'> <c:out value="${board.title}" /></a></td>
 							<td>${board.writer}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }" /></td>
@@ -98,6 +117,11 @@
 						
 					</ul>
 				</div>
+				
+				<form id="actionForm" action="/board/list" method="get">
+					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }" > 
+					<input type="hidden" name="amount" value="${pageMaker.cri.amount }" >
+				</form>
 				
 				<!-- modal add -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"

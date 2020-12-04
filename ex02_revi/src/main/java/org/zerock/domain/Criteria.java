@@ -14,7 +14,7 @@ public class Criteria {
 	
 	
 	public Criteria() {
-		this(3,10);
+		this(1,10);
 	}
 
 

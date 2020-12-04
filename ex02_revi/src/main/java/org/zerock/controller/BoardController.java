@@ -39,6 +39,7 @@ public class BoardController {
 		model.addAttribute("list", service.getList());
 	}*/
 	
+	// cri는 객체를 생성해서 만들어주네?
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 		log.info("list : " + cri);
@@ -73,9 +74,9 @@ public class BoardController {
 	// 게시물 하나 상세 조회 ( 리턴값이 void이므로 호출하는 url과 동일한 jsp 호출 )
 
 	@GetMapping( {"/get","/modify"} )
-	public void get(@RequestParam("bno") Long bno, Model model) {
-		
+	public void get(@RequestParam("bno") Long bno, Model model, Criteria cri ) {
 		log.info("/get or /modify...");
+		log.info("/get or /modify cri >> " + cri);
 		
 		model.addAttribute("board", service.get(bno));
 	}
